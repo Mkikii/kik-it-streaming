@@ -1,0 +1,437 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #7a5050;
+  color: white;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+}
+
+.logo {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: orange;
+  text-decoration: none;
+}
+
+.logout-btn {
+  background: rgba(202, 4, 31, 0.5);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: rgba(202, 4, 31, 0.8);
+  transform: translateY(-2px);
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px 20px;
+}
+
+.nav {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  font-size: 1.1rem;
+}
+
+.nav li a:hover {
+  color: #ff6b6b;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  width: 300px;
+}
+
+.search input {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.search button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: -35px;
+  font-size: 1.1rem;
+}
+
+.banner {
+  height: 100vh;
+  background: url("/images/jtl.png") center/cover;
+  display: flex;
+  align-items: flex-end;
+  padding: 180px 50px 100px;
+  position: relative;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+
+.content h4 {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.content p {
+  margin-bottom: 20px;
+}
+
+.button {
+  display: flex;
+  gap: 15px;
+}
+
+.button button {
+  padding: 12px 30px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.button .play {
+  background: #ff4757;
+  color: white;
+}
+
+.button .play:hover {
+  background: #ff3345;
+  transform: translateY(-2px);
+}
+
+.button .add-to-list {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.button .add-to-list:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.carousel-box {
+  padding: 50px;
+  background: #141414;
+}
+
+.carousel-box h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: orange;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-item {
+  min-width: 220px;
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  margin: 0 15px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.movie-item:hover {
+  transform: scale(1.08);
+}
+
+.movie-item h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  margin: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  font-weight: 300;
+  text-align: center;
+}
+
+.video-showcase {
+  padding: 50px;
+  background: #1a1a1a;
+}
+
+.video-showcase h2 {
+  font-size: 2rem;
+  color: orange;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.video-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.video-card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  background: #2a2a2a;
+}
+
+.video-card:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+video {
+  width: 100%;
+  display: block;
+  border-radius: 10px 10px 0 0;
+}
+
+.video-info {
+  padding: 15px;
+}
+
+.video-info h3 {
+  color: white;
+  margin-bottom: 5px;
+}
+
+.video-info p {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 30px;
+  background: #141414;
+}
+
+.social a {
+  color: white;
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+
+.social a:hover {
+  color: #ff6b6b;
+  transform: translateY(-3px);
+}
+
+.auth-page {
+  background: rgb(12, 1, 19) url("/images/auth-bg.jpg") no-repeat center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.auth-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: color-mix(in srgb, rgba(0, 0, 0, 0.5), rgba(126, 54, 54, 0.3));
+}
+
+.auth-container {
+  background: rgba(122, 80, 80, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 40px;
+  width: 90%;
+  max-width: 450px;
+  z-index: 1;
+  box-shadow: 0 10px 30px rgba(117, 52, 52, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.kik-it-logo {
+  font-size: 3.5rem;
+  color: orange;
+  margin: 0;
+  font-weight: 700;
+}
+
+.logo-header p {
+  color: rgba(158, 156, 187, 0.8);
+  margin-top: 5px;
+}
+
+.form-container {
+  display: none;
+  padding: 1 rem;
+}
+
+.form-container.active {
+  display: block;
+}
+
+.form-container h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: orange;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(202, 4, 31, 0.85);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1 rem;
+  transition: all 0.3s;
+}
+
+.auth-btn:hover {
+  background: rgba(202, 4, 31, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(202, 4, 31, 0.4);
+}
+
+.form-switch {
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-switch a {
+  color: orange;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

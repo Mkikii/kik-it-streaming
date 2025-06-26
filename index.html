@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kik-it | Asian Action Romance</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-top">
+        <a href="#" class="logo"><strong>Kik-it</strong></a>
+        <button id="logoutBtn" class="logout-btn">
+          Logout <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+      <div class="header-bottom">
+        <ul class="nav">
+          <li>
+            <a href="#"><i class="fas fa-home"></i> My list</a>
+          </li>
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Romance</a></li>
+        </ul>
+        <div class="search">
+          <input type="text" placeholder="Search movies..." />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="banner">
+      <div class="content">
+        <h4>
+          <span>2025</span>
+          <span><i>18+</i></span>
+          <span>45min</span>
+          <span>Action Romance</span>
+        </h4>
+        <p>
+          Two spies from neighbouring warring states get entangled in court
+          politics, war and dangerous plots despite wanting to retire from their
+          paths to live up to their principles and shifting bottom lines to
+          achieve peace.
+        </p>
+        <div class="button">
+          <button class="play"><i class="fas fa-play"></i> Watch</button>
+          <button class="add-to-list">
+            <i class="fas fa-plus"></i> My List
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-box">
+      <h2>My Top Picks</h2>
+      <div class="carousel" id="movie-carousel"></div>
+    </div>
+
+    <section class="video-showcase">
+      <h2><i class="fas fa-play-circle"></i> Molly-on-repeat</h2>
+      <div class="video-container">
+        <div class="video-card">
+          <video controls poster="images/its okay not to be okay.png">
+            <source src="videos/its okay not to be okay.mp4" type="video/mp4" />
+          </video>
+          <div class="video-info">
+            <h3>Its okay not to be Okay</h3>
+            <p>My favorite comfort series</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <video controls poster="images/tiger and rose.png">
+            <source src="videos/tiger and rose-trailer.mp4" type="video/mp4" />
+          </video>
+          <div class="video-info">
+            <h3>The Romance of tiger and Rose</h3>
+            <p>My favorite historical drama</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <video controls poster="images/weakhero.jpeg">
+            <source src="videos/weakhero.mp4" type="video/mp4" />
+          </video>
+          <div class="video-info">
+            <h3>weak hero</h3>
+            <p>My 2025 youth drama pick</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="social">
+      <a href="#"><i class="fab fa-blog"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
