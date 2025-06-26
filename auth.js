@@ -18,12 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
         loginFormContainer.classList.add('active');
     });
 
+    // Original localStorage login
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
         localStorage.setItem('kik-it-authenticated', 'true');
         window.location.href = 'index.html';
     });
 
+    // Original registration (demo only)
     registerForm.addEventListener('submit', function(e) {
         e.preventDefault();
         alert('Registration successful! Please login.');
