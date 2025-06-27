@@ -9,8 +9,40 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <link rel="stylesheet" href="style.css" />
+    <!--Add  Tailwind CSS-->
+    <link href="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'fade-in': 'fadeIn 1s ease-in-out',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              }
+            }
+          }
+        }
+      }
+      </script>
   </head>
   <body>
+
+    <section class="image-showcase py-16 px-8 bg-[#1a1a1a]">
+      <h2 class="text-4xl text-center mb-12 text-orange-500 font-bold flex items-center justify-center gap-3">
+       
+      </h2>
+      <div class="image-container flex flex-wrap justify-center gap-8 px-4">
+        <div class="image-card group relative w-72 h-96 rounded-xl overflow-hidden shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-2xl animate-fade-in">
+    
     <header>
       <div class="header-top">
         <a href="#" class="logo"><strong>Kik-it</strong></a>
@@ -61,33 +93,27 @@
       <div class="carousel" id="movie-carousel"></div>
     </div>
 
-    <section class="video-showcase">
-      <h2><i class="fas fa-play-circle"></i> Molly-on-repeat</h2>
-      <div class="video-container">
-        <div class="video-card">
-          <video controls poster="images/its okay not to be okay.png">
-            <source src="videos/its okay not to be okay.mp4" type="video/mp4" />
-          </video>
-          <div class="video-info">
+    <section class="image-showcase">
+      <h2><i class="fas fa-play-circle"></i> Currently Watching</h2>
+      <div class="image-container">
+        <div class="image-card">
+          <img src="images/its okay not to be okay.png" alt="Its okay not to be Okay" />
+          <div class="images-info">
             <h3>Its okay not to be Okay</h3>
             <p>My favorite comfort series</p>
           </div>
         </div>
-        <div class="video-card">
-          <video controls poster="images/tiger and rose.png">
-            <source src="videos/tiger and rose-trailer.mp4" type="video/mp4" />
-          </video>
-          <div class="video-info">
-            <h3>The Romance of tiger and Rose</h3>
+        <div class="images-card">
+          <img src="images/tiger and rose.png" alt="The Romance of Tiger and Rose" />
+          <div class="images-info">
+            <h3>The Romance of Tiger and Rose</h3>
             <p>My favorite historical drama</p>
           </div>
         </div>
-        <div class="video-card">
-          <video controls poster="images/weakhero.jpeg">
-            <source src="videos/weakhero.mp4" type="video/mp4" />
-          </video>
-          <div class="video-info">
-            <h3>weak hero</h3>
+        <div class="images-card">
+          <img src="images/weakhero.jpeg" alt="Weak Hero" />
+          <div class="images-info">
+            <h3>Weak Hero</h3>
             <p>My 2025 youth drama pick</p>
           </div>
         </div>
