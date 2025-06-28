@@ -1,3 +1,4 @@
+index,html 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,12 +54,15 @@
       <div class="header-bottom">
         <ul class="nav">
           <li>
-          
+            <a href="#"><i class="fas fa-home"></i> My list</a>
           </li>
           <li><a href="#">Action</a></li>
           <li><a href="#">Romance</a></li>
         </ul>
-      
+        <div class="search">
+          <input type="text" placeholder="Search movies..." />
+          <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
       </div>
     </header>
 
@@ -78,20 +82,20 @@
         </p>
         <div class="button">
           <button class="play"><i class="fas fa-play"></i> Watch</button>
-          
+          <button class="add-to-list">
+            <i class="fas fa-plus"></i> My List
+          </button>
         </div>
       </div>
     </div>
 
     <div class="carousel-box">
-      <h2>trailers</h2>
-      <div class="carousel" id="movie-carousel">
-        <div class="image-card shadow-md hover:shadow-orange-500/50 transition-shadow duration-300"></div>
-      </div>
+      <h2>My Top Picks</h2>
+      <div class="carousel" id="movie-carousel"></div>
     </div>
 
     <section class="image-showcase">
-      <h2><i class="fas fa-play-circle"></i> My fav Movie Posters</h2>
+      <h2><i class="fas fa-play-circle"></i> Currently Watching</h2>
       <div class="image-container">
         <div class="image-card">
           <img src="images/its okay not to be okay.png" alt="Its okay not to be Okay" />
