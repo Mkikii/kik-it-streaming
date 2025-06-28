@@ -1,146 +1,87 @@
-const movies = [
-    { title: "Flower of Evil", image: "images/flower of evil.png" },
-    { title: "Hidden Love", image: "images/hidden love.png" },
-    { title: "Brave Citizen", image: "images/brave citizen.png" },
-    { title: "Princess Silver", image: "images/princess silver.png" },
-    { title: "Resident Playbook", image: "images/resident playbook.png" },
-    { title: "Love Next Door", image: "images/love next door.png" }
-];
+document.addEventListener('DOMContentLoaded', () => {
+  const apiKey = '1a696a0189feb9a2da936486dab0fbd0';
+  const carousel = document.getElementById('movie-carousel');
+  const searchInput = document.querySelector('.search input');
+  const searchButton = document.querySelector('.search button');
+  const logoutBtn = document.getElementById('logoutBtn');
 
-// Carousel Animation Variables
-let scrollInterval;
-let scrollDirection = 1; // 1 for right, -1 for left
-const scrollSpeed = 1;
-const scrollDelay = 30;
+  // Prevent default behavior if button is inside a form
+  if (searchButton) {
+    searchButton.setAttribute('type', 'button');
+  }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Authentication Check
-    if (!localStorage.getItem('kik-it-authenticated')) {
-        window.location.href = 'login.html';
-        return;
-    }
+  // Load popular trailers on page load
+  fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US`)
+    .then(res => res.json())
+    .then(data => displayTrailers(data.results))
+    .catch(err => showError('Could not load popular movies', err));
 
-    // Initialize Components
-    initCarousel();
-    initButtons();
-    initVideos();
-});
+  // Search button click
+  searchButton?.addEventListener('click', () => {
+    const query = searchInput.value.trim();
+    if (!query) return;
 
-function initCarousel() {
-    const carousel = document.getElementById('movie-carousel');
-    if (!carousel) return;
-
-    // Clear existing content
-    carousel.innerHTML = '';
-
-    // Create Movie Items
-    movies.forEach((movie, index) => {
-        const movieElement = document.createElement('div');
-        movieElement.className = 'movie-item';
-        movieElement.style.backgroundImage = `url('${movie.image}')`;
-        
-        const titleElement = document.createElement('h3');
-        titleElement.textContent = movie.title;
-        titleElement.style.color = 'black';
-        titleElement.style.textShadow = '0 1px 3px rgba(255,255,255,0.8)';
-        
-        movieElement.appendChild(titleElement);
-        movieElement.style.animationDelay = `${index * 0.15}s`;
-        
-        // Hover Effects
-        movieElement.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.08)';
-            this.style.boxShadow = '0 10px 20px rgba(202, 4, 31, 0.5)';
-        });
-        
-        movieElement.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-            this.style.boxShadow = 'none';
-        });
-        
-        carousel.appendChild(movieElement);
-    });
-
-    // Start Auto-Scroll
-    startAutoScroll(carousel);
-
-    // Pause on Hover
-    carousel.addEventListener('mouseenter', () => clearInterval(scrollInterval));
-    carousel.addEventListener('mouseleave', () => startAutoScroll(carousel));
-}
-
-function startAutoScroll(carousel) {
-    clearInterval(scrollInterval); // Clear any existing interval
-    
-    scrollInterval = setInterval(() => {
-        if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth - 1) {
-            // Reached end - scroll back to start
-            carousel.scrollTo({ left: 0, behavior: 'smooth' });
-        } else if (carousel.scrollLeft <= 0) {
-            // Reached start - scroll forward
-            carousel.scrollBy({ left: scrollSpeed, behavior: 'smooth' });
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.results.length === 0) {
+          carousel.innerHTML = `<p style="color: orange;">No results found for "${query}".</p>`;
         } else {
-            // Normal scrolling
-            carousel.scrollBy({ left: scrollSpeed * scrollDirection, behavior: 'smooth' });
+          displayTrailers(data.results);
         }
-    }, scrollDelay);
-}
+      })
+      .catch(err => showError('Search failed', err));
+  });
 
-function initButtons() {
-    const playButton = document.querySelector('.play');
-    const listButton = document.querySelector('.add-to-list');
-    const logoutBtn = document.getElementById('logoutBtn');
-
-    if (playButton) {
-        playButton.addEventListener('click', function() {
-            alert("Now playing my selected show - enjoy!");
-        });
+  // Enter key triggers search
+  searchInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      searchButton.click();
     }
+  });
 
-    if (listButton) {
-        listButton.addEventListener('click', function() {
-            alert("Added to my personal watchlist!");
-        });
-    }
+  // Display trailers
+  function displayTrailers(movies) {
+    carousel.innerHTML = '';
+    movies.forEach(movie => {
+      fetch(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${apiKey}`)
+        .then(res => res.json())
+        .then(videoData => {
+          const trailer = videoData.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
+          if (trailer) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex flex-col items-center gap-2';
 
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-            localStorage.removeItem('kik-it-authenticated');
-            window.location.href = 'login.html';
-        });
-    }
-}
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${trailer.key}`;
+            iframe.width = '320';
+            iframe.height = '180';
+            iframe.allowFullscreen = true;
+            iframe.className = 'rounded-lg shadow-md';
 
-function initVideos() {
-    const videos = document.querySelectorAll('video');
-    if (!videos) return;
+            const title = document.createElement('p');
+            title.textContent = movie.title;
+            title.className = 'text-white text-sm';
 
-    videos.forEach(video => {
-        // Error Handling
-        video.addEventListener('error', function() {
-            console.error('Video error:', this.error);
-        });
-        
-        // Hover Play/Pause
-        video.addEventListener('mouseenter', function() {
-            this.play().catch(e => console.log('Autoplay prevented:', e));
-        });
-        
-        video.addEventListener('mouseleave', function() {
-            this.pause();
-            this.currentTime = 0;
-        });
+            wrapper.appendChild(iframe);
+            wrapper.appendChild(title);
+            carousel.appendChild(wrapper);
+          }
+        })
+        .catch(err => console.error(`Trailer fetch failed for ${movie.title}:`, err));
     });
-}
+  }
 
-// Handle Tab Visibility Changes
-document.addEventListener('visibilitychange', () => {
-    const carousel = document.getElementById('movie-carousel');
-    if (!carousel) return;
+  // Error display
+  function showError(message, error) {
+    console.error(message, error);
+    carousel.innerHTML = `<p style="color: red;">${message}. Please try again later.</p>`;
+  }
 
-    if (document.visibilityState === 'visible') {
-        startAutoScroll(carousel);
-    } else {
-        clearInterval(scrollInterval);
-    }
+  // Logout button
+  logoutBtn?.addEventListener('click', () => {
+    localStorage.removeItem('kik-it-authenticated');
+    window.location.href = 'login.html';
+  });
 });
